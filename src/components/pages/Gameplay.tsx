@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, CardContent, Grid } from '@material-ui/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { currentQuestionIdx, gameResults } from '../../recoil/atoms';
-import { selectCurrentQuestion, selectTotalQuestions } from '../../recoil/selectors';
+import { selectCurrentQuestion, selectHasNextQuestion, selectTotalQuestions } from '../../recoil/selectors';
 import { Option, QuestionResult } from '../../util/types';
+import Scoreboard from '../Scoreboard';
 
 const createOptionBtn = (onClick, option: Option) => (
-  <Grid key={option.id} container xs={6} justify="center" alignItems="center">
-    <Button {...{ onClick: onClick.bind(null, option.id) }}>{option.answer}</Button>
+  <Grid key={option.id} container xs={6} justify="center" alignItems="center" style={{ minHeight: '22.5vh' }}>
+    <Button {...{ onClick: onClick.bind(null, option.id) }} size="large" variant="outlined" className="answerBtn">
+      <h1>{option.answer}</h1>
+    </Button>
   </Grid>
 );
 
@@ -15,28 +18,39 @@ export default function Gameplay() {
   const [questionIdx, setQuestionIdx] = useRecoilState(currentQuestionIdx);
   const totalQuestions = useRecoilValue(selectTotalQuestions);
   const currentQuestion = useRecoilValue(selectCurrentQuestion);
+  const hasNextQuestion = useRecoilValue(selectHasNextQuestion);
   const [questionResults, setQuestionResults] = useRecoilState(gameResults);
 
+  const [gameOver, setGameOver] = useState(false);
+
   const handleClick = (id) => {
-    alert(`Clicked ${id}`);
-    setQuestionResults([...questionResults, new QuestionResult(currentQuestion?.id === id, currentQuestion?.id)]);
-    setQuestionIdx(questionIdx + 1);
+    setQuestionResults([
+      ...questionResults,
+      new QuestionResult(currentQuestion?.answerId === id, currentQuestion?.id, currentQuestion?.answerId, id),
+    ]);
+
+    if (hasNextQuestion) {
+      setQuestionIdx(questionIdx + 1);
+    } else {
+      setGameOver(true);
+    }
   };
 
   const createBtn = createOptionBtn.bind(null, handleClick);
 
-  return (
+  return gameOver ? (
+    <Scoreboard />
+  ) : (
     <Grid container justify="center" alignItems="center" direction="column">
       <Grid container className="gameplayContainer" justify="center" alignItems="center">
         <Card>
           <CardContent>
+            <h1>{`Question ${questionIdx + 1} of ${totalQuestions}`}</h1>
             <h1>{currentQuestion?.question}</h1>
           </CardContent>
         </Card>
       </Grid>
       <Grid container className="gameplayContainer" justify="center" alignItems="center">
-        {/*<h1>{`${questionIdx + 1} of ${totalQuestions}`}</h1>*/}
-        {/*<h1>{`Selected: ${JSON.stringify(currentQuestion, null, 2)}`}</h1>*/}
         {currentQuestion?.options.map(createBtn)}
       </Grid>
     </Grid>

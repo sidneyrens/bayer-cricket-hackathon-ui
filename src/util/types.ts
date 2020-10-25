@@ -22,8 +22,20 @@ export interface Option {
   answer: string;
 }
 
-export class QuestionResult {
-  constructor(correct: boolean, questionId?, choiceId?) {
-    Object.assign(this, { correct, questionId, choiceId });
+export interface TQuestionResult {
+  correct?: boolean;
+  questionId?: string;
+  answerId?: string;
+  choiceId?: string;
+}
+
+export class QuestionResult implements TQuestionResult {
+  correct = false;
+  questionId = '';
+  answerId = '';
+  choiceId = '';
+
+  constructor(correct: boolean, questionId?: string, answerId?: string, choiceId?: string) {
+    Object.assign(this, { correct, questionId, choiceId, answerId });
   }
 }

@@ -1,17 +1,39 @@
+
+@mixin lockHeight($amt){
+  min-height: $amt;
+  max-height: $amt;
+  height: $amt;
+}
+
+$pad2: 2vw;
+
 .App {
+  @include lockHeight(100vh);
   text-align: center;
-  min-height: 100vh;
-  max-height: 100vh;
   background-color: #61dafb !important;
 }
 
 div.navHeader {
-    min-height: 10vh;
+  @include lockHeight(10vh);
+  background-color: rgba(240, 240, 240, 0.34);
+  padding: 0 $pad2;
 }
 
 div.gameplayContainer {
-  min-height: 45vh;
-  max-height: 45vh;
+  @include lockHeight(45vh);
+}
+
+div.scoreboardContainer {
+  @include lockHeight(90vh);
+  padding: $pad2;
+}
+
+.answerBtn {
+  background-color: rgba(240, 255, 255, 0.43) !important;
+  min-width: 50% !important;
+  &:hover {
+    background-color: azure !important;
+  }
 }
 
 .App-logo {
