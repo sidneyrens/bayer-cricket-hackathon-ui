@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Login from './components/login'
-import {RecoilRoot} from 'recoil';
-
+import LandingPage from './components/pages/LandingPage';
+import Gameplay from './components/pages/Gameplay';
+import MainMenu from './components/pages/MainMenu';
 
 function App() {
-  return (
-    <RecoilRoot>
-      <Login></Login>  
-    </RecoilRoot>
-  );
+    return (
+        <div className="App">
+            <MainMenu />
+        </div>
+    );
 }
 
 export default App;
