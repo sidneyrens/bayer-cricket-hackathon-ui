@@ -12,7 +12,7 @@ export enum ATOM {
     CURRENT_QUESTIONS = 'CURRENT_QUESTIONS'
 }
 
-const userState = atom({
+export const userState = atom({
     key: ATOM.CURRENT_USER, // unique ID (with respect to other atoms/selectors)
     default:{
         id: '',
@@ -22,7 +22,7 @@ const userState = atom({
     } as User, // default value (aka initial value)
   });
 
-const questionState = atom({
+export const questionListState = atom({
     key: ATOM.CURRENT_QUESTIONS,
     default: []
 })
