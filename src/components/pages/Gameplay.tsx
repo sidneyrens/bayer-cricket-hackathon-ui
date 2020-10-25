@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, CardContent, Grid } from '@material-ui/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentQuestionIdx, gameResults } from '../../recoil/atoms';
+import { currentQuestionIdx, gameResults, gameStatus } from '../../recoil/atoms';
 import { selectCurrentQuestion, selectHasNextQuestion, selectTotalQuestions } from '../../recoil/selectors';
-import { Option, QuestionResult } from '../../util/types';
+import { GameStatus, Option, QuestionResult } from '../../util/types';
 import Scoreboard from '../Scoreboard';
 
 const createOptionBtn = (onClick, option: Option) => (
@@ -20,8 +20,7 @@ export default function Gameplay() {
   const currentQuestion = useRecoilValue(selectCurrentQuestion);
   const hasNextQuestion = useRecoilValue(selectHasNextQuestion);
   const [questionResults, setQuestionResults] = useRecoilState(gameResults);
-
-  const [gameOver, setGameOver] = useState(false);
+  const [currentGameStatus, setGameStatus] = useRecoilState(gameStatus);
 
   const handleClick = (id) => {
     setQuestionResults([
@@ -32,13 +31,17 @@ export default function Gameplay() {
     if (hasNextQuestion) {
       setQuestionIdx(questionIdx + 1);
     } else {
-      setGameOver(true);
+      setGameStatus(GameStatus.OVER);
     }
   };
 
   const createBtn = createOptionBtn.bind(null, handleClick);
 
-  return gameOver ? (
+  useEffect(() => {
+    setGameStatus(GameStatus.IN_PROGRESS);
+  }, []);
+
+  return currentGameStatus === GameStatus.OVER ? (
     <Scoreboard />
   ) : (
     <Grid container justify="center" alignItems="center" direction="column">

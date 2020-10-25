@@ -39,3 +39,9 @@ export class QuestionResult implements TQuestionResult {
     Object.assign(this, { correct, questionId, choiceId, answerId });
   }
 }
+
+export enum GameStatus {
+  MAIN_MENU,
+  IN_PROGRESS,
+  OVER,
+}

@@ -1,14 +1,18 @@
 import React from 'react';
 import { Grid, IconButton } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router';
-import { useSetRecoilState } from 'recoil';
-import { settingsVisible } from '../recoil/atoms';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { gameStatus, settingsVisible } from '../recoil/atoms';
 import { AccountCircle, ExitToAppOutlined, Settings } from '@material-ui/icons';
+import { selectGameState } from '../recoil/selectors';
+import { GameStatus } from '../util/types';
 
 export default function Header(): JSX.Element {
   const setShowSettings = useSetRecoilState(settingsVisible);
+  const currentGameStatus = useRecoilValue(gameStatus);
   const history = useHistory();
   const location = useLocation();
+  const resetGameState = useResetRecoilState(selectGameState);
 
   return (
     <Grid container direction="row" className="navHeader" xs={12} justify="space-between">
@@ -23,9 +27,14 @@ export default function Header(): JSX.Element {
             size="medium"
             focusRipple
             onClick={() => {
-              if (location.pathname === '/game' && !confirm('This will abandon the current game. Are you sure?'))
+              if (
+                location.pathname === '/game' &&
+                currentGameStatus === GameStatus.IN_PROGRESS &&
+                !confirm('This will abandon the current game. Are you sure?')
+              )
                 return;
-              history.push('/main');
+              history.push('/');
+              resetGameState();
             }}
           >
             <ExitToAppOutlined />
