@@ -16,7 +16,7 @@ export const userState = atom({
     id: '',
     userName: '',
     scores: [],
-    sponserId: '',
+    sponsorId: '',
   } as User, // default value (aka initial value)
 });
 

@@ -16,7 +16,8 @@ export default function Scoreboard(): JSX.Element {
   const questionResults = useRecoilValue(gameResults);
 
   return (
-    <Grid container className="scoreboardContainer" justify="center" alignItems="flex-start">
+    <Grid container direction="column" className="scoreboardContainer" justify="flex-start" alignItems="center">
+      <h1>Game Complete!</h1>
       <Table style={{ width: '50vw', backgroundColor: 'whitesmoke' }}>
         <TableHead>
           <TableRow>

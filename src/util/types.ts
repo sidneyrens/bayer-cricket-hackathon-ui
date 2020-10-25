@@ -2,7 +2,7 @@ export interface User {
   id: string;
   userName: string;
   scores: Score[];
-  sponserId: string;
+  sponsorId: string;
 }
 
 export interface Score {

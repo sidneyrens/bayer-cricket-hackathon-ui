@@ -5,6 +5,17 @@
   height: $amt;
 }
 
+@mixin lockWidth($amt){
+  min-width: $amt;
+  max-width: $amt;
+  width: $amt;
+}
+
+@mixin constrainSquareDimensions($amt){
+  @include lockHeight($amt);
+  @include lockWidth($amt);
+}
+
 $pad2: 2vw;
 
 .App {
@@ -17,6 +28,14 @@ div.navHeader {
   @include lockHeight(10vh);
   background-color: rgba(240, 240, 240, 0.34);
   padding: 0 $pad2;
+
+  button.navBtn {
+    @include constrainSquareDimensions(64px);
+
+    &.backBtn {
+      transform: scaleX(-1);
+    }
+  }
 }
 
 div.gameplayContainer {
@@ -28,9 +47,18 @@ div.scoreboardContainer {
   padding: $pad2;
 }
 
+div.mainMenu {
+  @include lockHeight(90vh);
+
+  button.mainMenuBtn {
+    @include lockHeight(20vh);
+    width: 40%;
+  }
+}
+
 .answerBtn {
   background-color: rgba(240, 255, 255, 0.43) !important;
-  min-width: 50% !important;
+  width: 50%;
   &:hover {
     background-color: azure !important;
   }
