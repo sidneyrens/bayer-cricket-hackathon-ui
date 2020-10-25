@@ -20,7 +20,7 @@ export default function App(): JSX.Element {
           <Header />
           <Switch>
             <Route path="/game" component={Gameplay} />
-            <Route exact path="/" render={() => (!loggedIn ? <MainMenu /> : <LandingPage />)} />
+            <Route exact path="/" render={() => (loggedIn ? <MainMenu /> : <LandingPage />)} />
             <Redirect path="*" to="/" />
           </Switch>
         </Grid>
