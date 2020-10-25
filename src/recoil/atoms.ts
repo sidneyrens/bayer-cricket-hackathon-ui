@@ -1,32 +1,22 @@
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
-import { User, Question } from '../util/types'
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { User, Question } from '../util/types';
 
 export enum ATOM {
     CURRENT_USER = 'CURRENT_USER',
-    CURRENT_QUESTIONS = 'CURRENT_QUESTIONS'
+    CURRENT_QUESTIONS = 'CURRENT_QUESTIONS',
 }
 
-const userState = atom({
+export const userState = atom({
     key: ATOM.CURRENT_USER, // unique ID (with respect to other atoms/selectors)
-    default:{
+    default: {
         id: '',
         userName: '',
         scores: [],
-        sponserId: ''
+        sponserId: '',
     } as User, // default value (aka initial value)
-  });
+});
 
-const questionState = atom({
+export const questionState = atom({
     key: ATOM.CURRENT_QUESTIONS,
-    default: []
-})
-
-
-
-
+    default: [],
+});
