@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login(): JSX.Element {
+<<<<<<< HEAD
     const user = useRecoilValue(userState);
     const setUser = useSetRecoilState(userState);
     const [password, setPassword] = useState('');
@@ -101,4 +102,48 @@ export default function Login(): JSX.Element {
             </Card>
         </Grid>
     );
+=======
+  const user = useRecoilValue(userState);
+  const setUser = useSetRecoilState(userState);
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  return (
+    <Card>
+      <CardContent>
+        <Input
+          type="text"
+          id="userName"
+          onChange={(e) => setUser({ ...user, userName: e.target.value })}
+          startAdornment={
+            <InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>
+          }
+        />
+        <Input
+          id="password"
+          value={password}
+          type={showPassword ? 'text' : 'password'}
+          onChange={(e) => setPassword(e.target.value)}
+          startAdornment={
+            <InputAdornment position="start">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(!showPassword)}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </CardContent>
+    </Card>
+  );
+>>>>>>> 8edc841ff4d7e6bf4758ef38aefef2d5b4c3e8e8
 }

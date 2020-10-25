@@ -1,0 +1,100 @@
+
+@mixin lockHeight($amt){
+  min-height: $amt;
+  max-height: $amt;
+  height: $amt;
+}
+
+@mixin lockWidth($amt){
+  min-width: $amt;
+  max-width: $amt;
+  width: $amt;
+}
+
+@mixin constrainSquareDimensions($amt){
+  @include lockHeight($amt);
+  @include lockWidth($amt);
+}
+
+$pad2: 2vw;
+
+.App {
+  @include lockHeight(100vh);
+  text-align: center;
+  background-color: #61dafb !important;
+}
+
+div.navHeader {
+  @include lockHeight(10vh);
+  background-color: rgba(240, 240, 240, 0.34);
+  padding: 0 $pad2;
+
+  button.navBtn {
+    @include constrainSquareDimensions(64px);
+
+    &.backBtn {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+div.gameplayContainer {
+  @include lockHeight(45vh);
+}
+
+div.scoreboardContainer {
+  @include lockHeight(90vh);
+  padding: $pad2;
+}
+
+div.mainMenu {
+  @include lockHeight(90vh);
+
+  button.mainMenuBtn {
+    @include lockHeight(20vh);
+    width: 40%;
+  }
+}
+
+.answerBtn {
+  background-color: rgba(240, 255, 255, 0.43) !important;
+  width: 50%;
+  &:hover {
+    background-color: azure !important;
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
