@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from '../Login';
 
-export default function LandingPage() {
+export default function LandingPage(): JSX.Element {
     return (
         <>
             <h1>LandingPage</h1>
