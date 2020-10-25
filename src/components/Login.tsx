@@ -9,18 +9,28 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { VisibilityOff, Visibility, AccountCircle } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    paper: {
-        height: 500,
+    card: {
+        height: 300,
         width: 300,
         justify: 'center',
+        padding: theme.spacing(8),
+        borderRadius: '5%',
+        backgroundColor: 'white',
     },
     control: {
-        padding: theme.spacing(15),
+        padding: theme.spacing(4),
+    },
+    inputs: {
+        margin: theme.spacing(2),
+    },
+    button: {
+        margin: theme.spacing(2),
     },
 }));
 
@@ -37,7 +47,7 @@ export default function Login(): JSX.Element {
 
     return (
         <Grid container spacing={5} className={classes.root} justify="center">
-            <Card className={classes.paper}>
+            <Card className={classes.card} variant="outlined">
                 <CardContent>
                     <Grid
                         container
@@ -48,33 +58,44 @@ export default function Login(): JSX.Element {
                         spacing={4}
                         alignItems="center"
                     >
-                        <Input
-                            type="text"
-                            id="userName"
-                            onChange={(e) => setUser({ ...user, userName: e.target.value })}
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <AccountCircle />
-                                </InputAdornment>
-                            }
-                        />
-                        <Input
-                            id="password"
-                            value={password}
-                            type={showPassword ? 'text' : 'password'}
-                            onChange={(e) => setPassword(e.target.value)}
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
+                        <Grid direction="row">
+                            <Input
+                                className={classes.inputs}
+                                type="text"
+                                id="userName"
+                                onChange={(e) => setUser({ ...user, userName: e.target.value })}
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <AccountCircle />
+                                    </InputAdornment>
+                                }
+                            />
+                        </Grid>
+                        <Grid direction="row">
+                            <Input
+                                className={classes.inputs}
+                                id="password"
+                                value={password}
+                                type={showPassword ? 'text' : 'password'}
+                                onChange={(e) => setPassword(e.target.value)}
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </Grid>
+                        <Grid direction="row">
+                            <Button className={classes.button} size="large" variant="outlined">
+                                Login
+                            </Button>
+                        </Grid>
                     </Grid>
                 </CardContent>
             </Card>
