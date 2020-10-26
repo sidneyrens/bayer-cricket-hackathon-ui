@@ -10,6 +10,7 @@ import { VisibilityOff, Visibility, AccountCircle } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { makeRegistrationCall } from '../network/login';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,15 @@ export default function Register(): JSX.Element {
 
   const classes = useStyles();
 
+  const submitNewUser = async () => {
+    const userToRegister = {
+      username: user.userName,
+      password: password,
+    };
+    const userRes = await makeRegistrationCall(userToRegister);
+    setUser(userRes);
+  };
+
   return (
     <Grid container spacing={5} className={classes.root} justify="center">
       <Card className={classes.card} variant="outlined">
@@ -77,6 +87,7 @@ export default function Register(): JSX.Element {
             <Grid direction="row">
               <Input
                 className={classes.inputs}
+                error={password !== verifyPassword ? true : false}
                 placeholder="password"
                 id="password"
                 value={password}
@@ -99,6 +110,7 @@ export default function Register(): JSX.Element {
               <Input
                 className={classes.inputs}
                 id="verifyPassword"
+                error={password !== verifyPassword ? true : false}
                 placeholder="verify password"
                 value={verifyPassword}
                 type={showVerifyPassword ? 'text' : 'password'}
@@ -117,7 +129,13 @@ export default function Register(): JSX.Element {
               />
             </Grid>
             <Grid direction="row">
-              <Button className={classes.button} size="large" variant="outlined">
+              <Button
+                disabled={password !== verifyPassword ? true : false}
+                className={classes.button}
+                size="large"
+                variant="outlined"
+                onClick={submitNewUser}
+              >
                 Register
               </Button>
             </Grid>
