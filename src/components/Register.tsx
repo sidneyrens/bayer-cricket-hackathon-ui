@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { userState } from '../recoil/atoms';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { VisibilityOff, Visibility, AccountCircle } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import { Link, Button, Grid, IconButton, InputAdornment, Input, CardContent, Card } from '@material-ui/core';
 import { makeRegistrationCall } from '../network/login';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +36,7 @@ export default function Register(): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
   const [showVerifyPassword, setShowVerifyPassword] = useState(false);
   const [verifyPassword, setVerifyPassword] = useState('');
+  //   const [ showLogin, setShowLogin] = useState(props.showLogin)
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -138,6 +133,8 @@ export default function Register(): JSX.Element {
               >
                 Register
               </Button>
+              <br />
+              <Link href="/">Back to login</Link>
             </Grid>
           </Grid>
         </CardContent>

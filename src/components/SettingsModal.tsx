@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Grid, Modal, Card } from '@material-ui/core';
+import { Button, Grid, Card, Modal } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { settingsVisible, userState } from '../recoil/atoms';
 import { User } from '../util/types';
