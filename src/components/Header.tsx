@@ -23,7 +23,7 @@ export default function Header(): JSX.Element {
       <Grid container direction="row" xs={4} justify="flex-start" alignItems="center">
         {location.pathname === '/' ? (
           isLoggedIn ? (
-            <IconButton className="navBtn backBtn" size="medium" focusRipple>
+            <IconButton title="Logout" className="navBtn backBtn" size="medium" focusRipple>
               <AccountCircle onClick={logOut} />
             </IconButton>
           ) : null

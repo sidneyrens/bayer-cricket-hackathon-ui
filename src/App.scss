@@ -156,6 +156,7 @@ div.mainMenu {
 .answerBtn {
   @extend %baseButton;
   width: 50%;
+  color: $brandWhite !important;
 
   &:hover {
     &:not(.decline) {
