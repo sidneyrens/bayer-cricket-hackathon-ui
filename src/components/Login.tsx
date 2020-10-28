@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Register from './Register';
-import { makeLoginCall } from '../network/login';
+import { User } from '../util/types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,12 +49,17 @@ export default function Login(): JSX.Element {
   const classes = useStyles();
 
   const submitLogin = async () => {
-    const userToLogin = {
-      username: user.userName,
-      password: password,
+    const userToLogin: User = {
+      id: '1234',
+      userName: user.userName,
+      scores: [{ gameDate: new Date(), score: 10 }],
+      sponsorId: 'jdjilargo',
     };
-    const userRes = await makeLoginCall(userToLogin);
-    console.log(userRes);
+    console.log('in login');
+    setUser(userToLogin);
+    console.log(user);
+    // const userRes = await makeLoginCall(userToLogin);
+    // console.log(userRes);
     // setUser(userRes.data);
   };
 
