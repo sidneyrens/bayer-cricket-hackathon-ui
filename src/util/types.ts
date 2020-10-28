@@ -12,9 +12,9 @@ export interface Score {
 
 export interface Question {
   id: string;
-  answerId: string;
+  answer: string;
   question: string;
-  options: Option[];
+  options: string[];
 }
 
 export interface Option {
@@ -25,18 +25,18 @@ export interface Option {
 export interface TQuestionResult {
   correct?: boolean;
   questionId?: string;
-  answerId?: string;
-  choiceId?: string;
+  answer?: string;
+  choice?: string;
 }
 
 export class QuestionResult implements TQuestionResult {
   correct = false;
   questionId = '';
-  answerId = '';
-  choiceId = '';
+  answer = '';
+  choice = '';
 
-  constructor(correct: boolean, questionId?: string, answerId?: string, choiceId?: string) {
-    Object.assign(this, { correct, questionId, choiceId, answerId });
+  constructor(correct: boolean, questionId?: string, answer?: string, choice?: string) {
+    Object.assign(this, { correct, questionId, choice, answer });
   }
 }
 

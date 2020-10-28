@@ -1,6 +1,5 @@
 import { atom } from 'recoil';
 import { GameStatus, Question, QuestionResult, User } from '../util/types';
-import { createMockQuestionList } from '../data/mockData';
 
 export enum ATOM {
   CURRENT_USER = 'CURRENT_USER',
@@ -9,6 +8,7 @@ export enum ATOM {
   GAME_RESULTS = 'GAME_RESULTS',
   SETTINGS_VISIBLE = 'SETTINGS_VISIBLE',
   GAME_STATUS = 'GAME_STATUS',
+  ABOUT_VISIBLE = 'ABOUT_VISIBLE',
 }
 
 export const userState = atom({
@@ -23,7 +23,7 @@ export const userState = atom({
 
 export const questionListState = atom({
   key: ATOM.CURRENT_QUESTIONS,
-  default: createMockQuestionList(15) as Question[],
+  default: [] as Question[],
 });
 
 export const currentQuestionIdx = atom({
@@ -38,6 +38,11 @@ export const gameResults = atom({
 
 export const settingsVisible = atom({
   key: ATOM.SETTINGS_VISIBLE,
+  default: false,
+});
+
+export const aboutVisible = atom({
+  key: ATOM.ABOUT_VISIBLE,
   default: false,
 });
 

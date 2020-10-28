@@ -1,0 +1,27 @@
+/* used to overwrite default modal width */
+
+.modal-dialog {
+  max-width: 50%;
+  margin: 1.75rem auto;
+}
+
+.modal-footer {
+  text-align: left;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.01;
+  filter: alpha(opacity=0);
+}
+
+.modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+body.ModalOpened .ModalContainer {
+  display: block;
+  -webkit-transform: translateX(-50%) translateY(-60%) translateZ(0);
+  -ms-transform: translateX(-50%) translateY(-60%) translateZ(0);
+  transform: translateX(-50%) translateY(-60%) translateZ(0);
+}

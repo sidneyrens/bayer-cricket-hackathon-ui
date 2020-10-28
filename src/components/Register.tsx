@@ -4,7 +4,7 @@ import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { userState } from '../recoil/atoms';
 import { VisibilityOff, Visibility, AccountCircle } from '@material-ui/icons';
 import { Link, Button, Grid, IconButton, InputAdornment, Input, CardContent, Card } from '@material-ui/core';
-import { makeRegistrationCall } from '../network/login';
+import { User } from '../util/types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,12 +44,17 @@ export default function Register(): JSX.Element {
   const classes = useStyles();
 
   const submitNewUser = async () => {
-    const userToRegister = {
-      username: user.userName,
-      password: password,
+    const userToRegister: User = {
+      id: '000',
+      userName: user.userName,
+      scores: [{ gameDate: new Date(), score: 10 }],
+      sponsorId: 'asponsor',
     };
-    const userRes = await makeRegistrationCall(userToRegister);
-    setUser(userRes);
+    setUser(userToRegister);
+  };
+
+  const aFunction = () => {
+    console.log('waaahhahhoag');
   };
 
   return (
@@ -134,7 +139,9 @@ export default function Register(): JSX.Element {
                 Register
               </Button>
               <br />
-              <Link href="/">Back to login</Link>
+              <Link href="/" onClick={aFunction}>
+                Back to login
+              </Link>
             </Grid>
           </Grid>
         </CardContent>

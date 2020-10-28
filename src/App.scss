@@ -59,10 +59,10 @@ $brandWhite: white;
   @extend .fullScreen;
 
   .modalBody {
-    @include constrainDimensions(50vw, 50vh);
+    @include constrainDimensions(80vw, 80vh);
     @extend %flexCentered;
     z-index: 100;
-
+    background-color: $brandGray;
     &.row:not(.column) {
       flex-direction: row;
     }

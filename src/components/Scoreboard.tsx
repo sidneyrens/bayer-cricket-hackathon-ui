@@ -6,11 +6,11 @@ import { gameResults } from '../recoil/atoms';
 import { comingSoon } from '../util/helpers';
 import { useHistory } from 'react-router';
 
-const createTableRow = ({ questionId, answerId, choiceId }: QuestionResult) => (
+const createTableRow = ({ questionId, answer, choice }: QuestionResult) => (
   <TableRow key={questionId}>
     <TableCell>{questionId}</TableCell>
-    <TableCell>{answerId}</TableCell>
-    <TableCell>{choiceId}</TableCell>
+    <TableCell>{answer}</TableCell>
+    <TableCell>{choice}</TableCell>
   </TableRow>
 );
 
