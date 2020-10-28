@@ -9,6 +9,7 @@ export enum ATOM {
   SETTINGS_VISIBLE = 'SETTINGS_VISIBLE',
   GAME_STATUS = 'GAME_STATUS',
   ABOUT_VISIBLE = 'ABOUT_VISIBLE',
+  SHOW_REGISTER = 'SHOW_REGISTER',
 }
 
 export const userState = atom({
@@ -49,4 +50,9 @@ export const aboutVisible = atom({
 export const gameStatus = atom({
   key: ATOM.GAME_STATUS,
   default: GameStatus.MAIN_MENU,
+});
+
+export const showTheRegister = atom({
+  key: ATOM.SHOW_REGISTER,
+  default: false,
 });
