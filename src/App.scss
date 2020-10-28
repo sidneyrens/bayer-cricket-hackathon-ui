@@ -1,17 +1,16 @@
-
-@mixin lockHeight($amt){
+@mixin lockHeight($amt) {
   min-height: $amt;
   max-height: $amt;
   height: $amt;
 }
 
-@mixin lockWidth($amt){
+@mixin lockWidth($amt) {
   min-width: $amt;
   max-width: $amt;
   width: $amt;
 }
 
-@mixin constrainSquareDimensions($amt){
+@mixin constrainSquareDimensions($amt) {
   @include lockHeight($amt);
   @include lockWidth($amt);
 }
@@ -20,8 +19,10 @@ $pad2: 2vw;
 
 .App {
   @include lockHeight(100vh);
+  @include lockWidth(100vw);
   text-align: center;
   background-color: #61dafb !important;
+  overflow: hidden;
 }
 
 div.navHeader {
