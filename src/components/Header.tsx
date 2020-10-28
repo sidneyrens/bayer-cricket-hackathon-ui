@@ -47,7 +47,7 @@ export default function Header(): JSX.Element {
       </Grid>
 
       <Grid container direction="row" xs={4} justify="center" alignItems="center">
-        <h1>Bayer Cricket Trivia</h1>
+        <h1>United Way Bayer Cricket Trivia</h1>
       </Grid>
 
       <Grid container direction="row" xs={4} justify="flex-end" alignItems="center">

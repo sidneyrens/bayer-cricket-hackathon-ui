@@ -17,17 +17,33 @@
 
 $pad2: 2vw;
 
+$brandBlue: #005191;
+$brandLightBlue: #539ED0;
+$brandRed: #FF443B;
+$brandLightOrange: #FFB351;
+$brandBlack: black;
+$brandOrange: #f57814;
+$brandGray: #969696;
+$brandWhite: white;
+
+%baseButton {
+  background-color: $brandLightBlue !important;
+  color: $brandWhite;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
 .App {
   @include lockHeight(100vh);
   @include lockWidth(100vw);
   text-align: center;
-  background-color: #61dafb !important;
+  background-color: $brandBlue;
   overflow: hidden;
 }
 
 div.navHeader {
   @include lockHeight(10vh);
-  background-color: rgba(240, 240, 240, 0.34);
+  background-color: $brandLightBlue;
   padding: 0 $pad2;
 
   button.navBtn {
@@ -53,15 +69,20 @@ div.mainMenu {
 
   button.mainMenuBtn {
     @include lockHeight(20vh);
+    @extend %baseButton;
     width: 40%;
   }
 }
 
 .answerBtn {
-  background-color: rgba(240, 255, 255, 0.43) !important;
+  @extend %baseButton;
   width: 50%;
+
   &:hover {
-    background-color: azure !important;
+    &:not(.decline){
+      background-color: $brandOrange !important;
+    }
+    background-color: $brandGray !important;
   }
 }
 
