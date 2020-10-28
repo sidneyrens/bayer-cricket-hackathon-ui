@@ -1,36 +1,89 @@
+$pad2: 2vw;
 
-@mixin lockHeight($amt){
+$brandBlue: #005191;
+$brandLightBlue: #539ed0;
+$brandRed: #ff443b;
+$brandLightOrange: #ffb351;
+$brandBlack: black;
+$brandOrange: #f57814;
+$brandGray: #969696;
+$brandWhite: white;
+
+@mixin lockHeight($amt) {
   min-height: $amt;
   max-height: $amt;
   height: $amt;
 }
 
-@mixin lockWidth($amt){
+@mixin lockWidth($amt) {
   min-width: $amt;
   max-width: $amt;
   width: $amt;
 }
 
-@mixin constrainSquareDimensions($amt){
-  @include lockHeight($amt);
-  @include lockWidth($amt);
+@mixin constrainDimensions($w, $h: $w) {
+  @include lockHeight($h);
+  @include lockWidth($w);
 }
 
-$pad2: 2vw;
+@mixin bigFont() {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+%baseButton {
+  @include bigFont();
+  background-color: $brandLightBlue !important;
+  color: $brandWhite;
+}
+
+%flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullScreen {
+  @include lockHeight(100vh);
+  @include lockWidth(100vw);
+}
 
 .App {
-  @include lockHeight(100vh);
+  @extend .fullScreen;
   text-align: center;
-  background-color: #61dafb !important;
+  background-color: $brandBlue;
+  overflow: hidden;
+}
+
+.modalContainer {
+  @extend .fullScreen;
+
+  .modalBody {
+    @include constrainDimensions(50vw, 50vh);
+    @extend %flexCentered;
+    z-index: 100;
+
+    &.row:not(.column) {
+      flex-direction: row;
+    }
+
+    &.column:not(.row) {
+      flex-direction: column;
+    }
+
+    &.spread {
+      justify-content: space-evenly;
+    }
+  }
 }
 
 div.navHeader {
   @include lockHeight(10vh);
-  background-color: rgba(240, 240, 240, 0.34);
+  background-color: $brandLightBlue;
   padding: 0 $pad2;
 
   button.navBtn {
-    @include constrainSquareDimensions(64px);
+    @include constrainDimensions(64px);
 
     &.backBtn {
       transform: scaleX(-1);
@@ -44,7 +97,50 @@ div.gameplayContainer {
 
 div.scoreboardContainer {
   @include lockHeight(90vh);
-  padding: $pad2;
+
+  div.scoreboardRow {
+    @include lockHeight(calc(70vh - 2vw));
+
+    table.scoreboard {
+      width: 75vw;
+      background-color: $brandWhite;
+      * {
+        text-align: center;
+      }
+
+      tbody {
+        tr:nth-child(2n) {
+          background-color: $brandLightOrange;
+        }
+      }
+
+      tr.header {
+        background-color: $brandGray;
+
+        th {
+          @include bigFont();
+          color: $brandWhite;
+        }
+      }
+    }
+
+    div.scoreboardWrapper {
+      @extend %flexCentered;
+      align-items: flex-start;
+      max-height: 75%;
+      width: auto;
+      overflow: hidden scroll;
+      background-color: transparent;
+    }
+  }
+
+  div.buttonRow {
+    @include lockHeight(calc(20vh - 2vw));
+
+    > div {
+      height: 75%;
+    }
+  }
 }
 
 div.mainMenu {
@@ -52,49 +148,24 @@ div.mainMenu {
 
   button.mainMenuBtn {
     @include lockHeight(20vh);
+    @extend %baseButton;
     width: 40%;
   }
 }
 
 .answerBtn {
-  background-color: rgba(240, 255, 255, 0.43) !important;
+  @extend %baseButton;
   width: 50%;
+  color: $brandWhite !important;
+
   &:hover {
-    background-color: azure !important;
+    &:not(.decline) {
+      background-color: $brandOrange !important;
+    }
+    background-color: $brandGray !important;
   }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+svg.unitedWayBanner {
+  transform: scale(7.5);
 }
