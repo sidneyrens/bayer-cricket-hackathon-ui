@@ -19,8 +19,10 @@ $pad2: 2vw;
 
 .App {
   @include lockHeight(100vh);
+  @include lockWidth(100vw);
   text-align: center;
-  background-color: #ffffff !important;
+  background-color: #61dafb !important;
+  overflow: hidden;
 }
 
 div.navHeader {
