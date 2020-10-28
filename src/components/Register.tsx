@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { userState } from '../recoil/atoms';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { userState, showTheRegister } from '../recoil/atoms';
 import { VisibilityOff, Visibility, AccountCircle } from '@material-ui/icons';
 import { Link, Button, Grid, IconButton, InputAdornment, Input, CardContent, Card } from '@material-ui/core';
 import { User } from '../util/types';
@@ -36,7 +36,7 @@ export default function Register(): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
   const [showVerifyPassword, setShowVerifyPassword] = useState(false);
   const [verifyPassword, setVerifyPassword] = useState('');
-  //   const [ showLogin, setShowLogin] = useState(props.showLogin)
+  const [showRegister, setShowRegister] = useRecoilState(showTheRegister);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -54,7 +54,7 @@ export default function Register(): JSX.Element {
   };
 
   const aFunction = () => {
-    console.log('waaahhahhoag');
+    setShowRegister(false);
   };
 
   return (
@@ -139,9 +139,7 @@ export default function Register(): JSX.Element {
                 Register
               </Button>
               <br />
-              <Link href="/" onClick={aFunction}>
-                Back to login
-              </Link>
+              <Link onClick={aFunction}>Back to login</Link>
             </Grid>
           </Grid>
         </CardContent>

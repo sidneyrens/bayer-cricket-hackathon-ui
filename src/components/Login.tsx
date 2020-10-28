@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { userState } from '../recoil/atoms';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { userState, showTheRegister } from '../recoil/atoms';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Input from '@material-ui/core/Input';
@@ -41,7 +41,7 @@ export default function Login(): JSX.Element {
   const setUser = useSetRecoilState(userState);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showRegister, setShowRegister] = useRecoilState(showTheRegister);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
