@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { gameStatus, settingsVisible } from '../recoil/atoms';
 import { AccountCircle, ExitToAppOutlined, Settings } from '@material-ui/icons';
-import { selectGameState } from '../recoil/selectors';
+import { selectGameState, userLoggedIn } from '../recoil/selectors';
 import { GameStatus } from '../util/types';
 
 export default function Header(): JSX.Element {
@@ -13,14 +13,18 @@ export default function Header(): JSX.Element {
   const history = useHistory();
   const location = useLocation();
   const resetGameState = useResetRecoilState(selectGameState);
+  const isLoggedIn = useRecoilValue(userLoggedIn);
+  const logOut = useResetRecoilState(userLoggedIn);
 
   return (
     <Grid container direction="row" className="navHeader" xs={12} justify="space-between">
       <Grid container direction="row" xs={4} justify="flex-start" alignItems="center">
         {location.pathname === '/' ? (
-          <IconButton className="navBtn backBtn" size="medium" focusRipple>
-            <AccountCircle />
-          </IconButton>
+          isLoggedIn ? (
+            <IconButton className="navBtn backBtn" size="medium" focusRipple>
+              <AccountCircle onClick={logOut} />
+            </IconButton>
+          ) : null
         ) : (
           <IconButton
             className="navBtn backBtn"
@@ -47,9 +51,11 @@ export default function Header(): JSX.Element {
       </Grid>
 
       <Grid container direction="row" xs={4} justify="flex-end" alignItems="center">
-        <IconButton size="medium" focusRipple onClick={() => setShowSettings(true)}>
-          <Settings />
-        </IconButton>
+        {isLoggedIn && (
+          <IconButton size="medium" focusRipple onClick={() => setShowSettings(true)}>
+            <Settings />
+          </IconButton>
+        )}
       </Grid>
     </Grid>
   );

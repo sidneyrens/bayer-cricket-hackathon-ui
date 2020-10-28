@@ -32,6 +32,7 @@ export const selectHasNextQuestion = selector({
 export const userLoggedIn = selector({
   key: SELECTOR.USER_LOGGED_IN,
   get: ({ get }) => Object.values(get(userState)).every(Boolean),
+  set: ({ reset }) => reset(userState),
 });
 
 // TODO: Replace with selectorFamily
