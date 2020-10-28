@@ -6,7 +6,7 @@ import { gameStatus, settingsVisible } from '../recoil/atoms';
 import { AccountCircle, ExitToAppOutlined, Settings } from '@material-ui/icons';
 import { selectGameState, userLoggedIn } from '../recoil/selectors';
 import { GameStatus } from '../util/types';
-import { fetchQuestions } from '../data/fetchQuestions'
+import { fetchQuestions } from '../data/fetchQuestions';
 import { UnitedWayLogo } from '../data/svg/UnitedWay';
 import SettingsModal from './SettingsModal';
 
@@ -20,7 +20,7 @@ export default function Header(): JSX.Element {
   const isLoggedIn = useRecoilValue(userLoggedIn);
   const logOut = useResetRecoilState(userLoggedIn);
 
-  console.log('Questions', questions)
+  console.log('Questions', questions);
   return (
     <Grid container direction="row" className="navHeader" xs={12} justify="space-between">
       <Grid container direction="row" xs={4} justify="flex-start" alignItems="center">
