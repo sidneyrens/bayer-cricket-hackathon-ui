@@ -27,12 +27,7 @@ export default function LandingPage() {
     <Grid container justify="center" alignItems="center" direction="column" style={{ height: '90vh' }}>
       <Grid container>
         <Login />
-        <Typography className={classes.heading} variant="h4">
-          If you would Like to make a donation to United Way
-          <Link onClick={onClickDonate}>
-            <img src={unitedWayPic} alt="united way pic" />
-          </Link>
-        </Typography>
+        <Typography className={classes.heading} variant="h4"></Typography>
       </Grid>
     </Grid>
   );
