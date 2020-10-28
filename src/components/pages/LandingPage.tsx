@@ -19,14 +19,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LandingPage() {
+  const classes = useStyles();
+
+  const onClickDonate = () => window.open('https://uwgsl.tfaforms.net/4602967', '_blank');
+
   return (
     <Grid container justify="center" alignItems="center" direction="column" style={{ height: '90vh' }}>
       <Grid container>
         <Login />
         <Typography className={classes.heading} variant="h4">
           If you would Like to make a donation to United Way
-          <Link href="https://uwgsl.tfaforms.net/4602967"> Click Here </Link>
-          <img src={unitedWayPic} alt="united way pic" href="https://uwgsl.tfaforms.net/4602967" />
+          <Link onClick={onClickDonate}>
+            <img src={unitedWayPic} alt="united way pic" />
+          </Link>
         </Typography>
       </Grid>
     </Grid>
