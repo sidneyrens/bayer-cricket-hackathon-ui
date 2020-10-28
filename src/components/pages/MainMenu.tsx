@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { useHistory } from 'react-router';
-
-const comingSoon = () => alert('Coming soon!™');
+import { comingSoon } from '../../util/helpers';
 
 export default function MainMenu() {
   const history = useHistory();

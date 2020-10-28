@@ -6,6 +6,8 @@ import { gameStatus, settingsVisible } from '../recoil/atoms';
 import { AccountCircle, ExitToAppOutlined, Settings } from '@material-ui/icons';
 import { selectGameState, userLoggedIn } from '../recoil/selectors';
 import { GameStatus } from '../util/types';
+import { UnitedWayLogo } from '../data/svg/UnitedWay';
+import SettingsModal from './SettingsModal';
 
 export default function Header(): JSX.Element {
   const setShowSettings = useSetRecoilState(settingsVisible);
@@ -47,7 +49,12 @@ export default function Header(): JSX.Element {
       </Grid>
 
       <Grid container direction="row" xs={4} justify="center" alignItems="center">
-        <h1>United Way Bayer Cricket Trivia</h1>
+        {/*<h1>United Way Bayer Cricket Trivia</h1>*/}
+        <IconButton size="medium" focusRipple onClick={() => setShowSettings(true)}>
+          <UnitedWayLogo
+          // style={{ transform: 'scale(5)' }}
+          />
+        </IconButton>
       </Grid>
 
       <Grid container direction="row" xs={4} justify="flex-end" alignItems="center">
@@ -57,6 +64,7 @@ export default function Header(): JSX.Element {
           </IconButton>
         )}
       </Grid>
+      <SettingsModal />
     </Grid>
   );
 }

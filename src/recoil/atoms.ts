@@ -23,7 +23,7 @@ export const userState = atom({
 
 export const questionListState = atom({
   key: ATOM.CURRENT_QUESTIONS,
-  default: createMockQuestionList(5) as Question[],
+  default: createMockQuestionList(15) as Question[],
 });
 
 export const currentQuestionIdx = atom({

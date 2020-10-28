@@ -18,3 +18,7 @@ export function callEach(...args) {
     (typeof arg === 'function' ? arg : R.identity)(undefined);
   });
 }
+
+export function comingSoon() {
+  alert('Coming soon!™');
+}
